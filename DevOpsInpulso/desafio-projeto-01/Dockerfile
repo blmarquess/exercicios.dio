@@ -2,16 +2,14 @@
 FROM node:16-bullseye as builder
 WORKDIR /app
 RUN apt install git -y
-RUN git clone https://github.com/blmarquess/ShopCart-API-ML.git
-RUN cp -r ShopCart-API-ML/* .
+RUN git clone https://github.com/blmarquess/Game-Trunfo.git
+RUN cp -r Game-Trunfo/* .
+RUN npm install && npm run build
 
 # Stage 2 - the production
 FROM httpd:latest
-WORKDIR /var/www/html/
+WORKDIR /usr/local/apache2/htdocs
 RUN rm -rf ./*
-COPY --from=builder /app/* .
-COPY --from=builder /app /usr/local/apache2/htdocs
+COPY --from=builder /app/build .
 COPY ./apache-conf/.htaccess ./.htaccess
-COPY ./apache-conf/.htaccess /usr/local/apache2/conf/.htaccess
-COPY ./apache-conf/.htaccess /usr/local/apache2/conf/extra/.htaccess
 EXPOSE 80
