@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    container_name: apache-dio
+    ports:
+      - 80:80
+    volumes:
+      - ./apache-conf/.htaccess:/var/www/html/.htaccess
