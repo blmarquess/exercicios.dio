@@ -1,2 +1,3 @@
-# exercicios.dio
-repositorio para conteudos de exercicios da DIO.me
+# exercícios
+
+repositório para conteúdos de exercícios da DIO.me
